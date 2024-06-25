@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import './App.css';
 import { initialItems } from './utils';
@@ -7,7 +7,10 @@ function App() {
   const [count, setCount] = useState(0);
   const [items] = useState(initialItems);
 
-  const selectedItems = items.find((item) => item.isSelected);
+  const selectedItems = useMemo(
+    () => items.find((item) => item.isSelected),
+    [items]
+  );
 
   return (
     <>
